@@ -7,4 +7,9 @@ class User < ApplicationRecord
   has_many :enrollments
   has_many :courses, through: :enrollments
 
+  has_many :excursions, through: :courses
+
+  has_many :enlistments
+  has_many :excursions, through: :enlistments
+
 end

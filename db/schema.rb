@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_27_040956) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_28_031853) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_040956) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
+  create_table "enlistments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "excursion_id", null: false
+    t.index ["excursion_id"], name: "index_enlistments_on_excursion_id"
+    t.index ["user_id"], name: "index_enlistments_on_user_id"
+  end
+
   create_table "enrollments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "course_id", null: false
@@ -33,6 +42,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_040956) do
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_enrollments_on_course_id"
     t.index ["user_id"], name: "index_enrollments_on_user_id"
+  end
+
+  create_table "excursions", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "arrive_time"
+    t.string "street_number"
+    t.string "street_name"
+    t.string "suburb"
+    t.string "city"
+    t.integer "state"
+    t.integer "post_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "course_id", null: false
+    t.index ["course_id"], name: "index_excursions_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,6 +75,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_27_040956) do
   end
 
   add_foreign_key "courses", "users"
+  add_foreign_key "enlistments", "excursions"
+  add_foreign_key "enlistments", "users"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
+  add_foreign_key "excursions", "courses"
 end
