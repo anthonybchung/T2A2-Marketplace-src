@@ -1,4 +1,9 @@
-<h1>Guests#index</h1>
-<p>Find me in app/views/guests/index.html.erb</p>
-
-<%= console%>
+<main class="container d-flex align-items-center h-75">
+    <section class="h-50 col-sm-6">
+        <h1 class="m-5">Carpool for students</h1>
+    </section>
+    <section class="h-20 col-sm-6 d-flex flex-column align-items-center justify-content-around">
+        <%= link_to "Sign In", new_user_session_path, class: "btn btn-primary col-6"%>
+        <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary col-6 mt-5"%>
+    </section>
+</main>
