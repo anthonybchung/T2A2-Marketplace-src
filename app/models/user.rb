@@ -12,4 +12,6 @@ class User < ApplicationRecord
   has_many :enlistments
   has_many :excursions, through: :enlistments
 
+  has_many :groups
+
 end
