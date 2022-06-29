@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "teacher_course_show" do %>
+    <div class="col-sm-12 d-flex flex-row h-100 p-2">
+        <section class="col-6 h-100">
+            <h5 class="card-title"><%= @course.name%></h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                <%=@course.year%>/<%=@course.month%><br/>
+                <% if @course.active %>
+                    <span>Active</span>
+                <% else %>
+                    <span style="color: red">Not Active </span>
+                <% end%>
+            </h6>
+            <p class="card-text"><%= @course.description %></p>
+        </section>
+        <section class="col-6 align-self-end">
+            <%= link_to "Edit", edit_course_path, data: {turbo_frame:"teacher_course_show"}, class:"btn btn-primary" %>
+        </section>
+    </div>
+<% end %>

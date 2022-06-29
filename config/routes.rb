@@ -12,5 +12,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
+
+  #----- courses ----
+  get '/courses/filter', to: 'courses#filter', as: 'filter_list'
+  resources :courses
+ 
+
   root "guests#index"
 end

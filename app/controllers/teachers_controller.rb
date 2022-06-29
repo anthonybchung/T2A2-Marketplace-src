@@ -3,6 +3,7 @@ class TeachersController < ApplicationController
   before_action :only_teachers
   
   def index
+    @courses = Course.where(user_id: @current_user, active: true)
   end
 
 

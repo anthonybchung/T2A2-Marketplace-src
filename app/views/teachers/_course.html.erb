@@ -1,0 +1,9 @@
+
+<%= link_to course_path(course), data: {turbo_frame: "teacher_course_show"} do %>
+<li class="list-group-item"> 
+    <%= course.name %> 
+    <%= course.year %>/<%= course.month %>
+</li>
+
+<% end %>
+

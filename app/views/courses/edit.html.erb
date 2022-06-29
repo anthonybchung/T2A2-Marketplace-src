@@ -1,0 +1,43 @@
+<%= turbo_frame_tag "teacher_course_show" do %>
+    <%= form_with model: @course do |form| %>
+        <section class="d-flex flex-row">
+           
+           <div class="col-6">
+            <h4> Edit Course </h4>
+            <div class="mb-2 row">
+                <%= form.label :name, class:"col-sm-2 col-form-label"%>
+                <div class="col-sm-10">
+                    <%= form.text_field :name, class: "form-control"%>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <%= form.label :year, class:"col-sm-2 col-form-label"%>
+                <div class="col-sm-10">
+                    <%= form.number_field :year, class: "form-control" %>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <%= form.label :month, class:"col-sm-2 col-form-label" %>
+                <div class="col-sm-10">
+                    <%= form.number_field :month, class: "form-control" %>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <%= form.label :active, class: "col-sm-2 col-form-label"%>
+                <div class="col-sm-10">
+                    <%= form.check_box :active, class:"form-check-input mt-1" %>
+                </div>
+            </div>
+           </div>
+
+           <div class="col-6 px-1">
+            <%= form.label :description, class:"col-form-label"%>
+            <%= form.text_area :description, class:"form-control" %>
+            <div class="row">
+                <%= form.submit class:"btn btn-primary col-sm-4 ms-5 mt-3"%>
+                <%= link_to "Cancel", course_path, class: "btn btn-primary col-sm-4 ms-5 mt-3" %>
+            </div>
+           </div>
+        </section>
+    <% end %>
+<% end %>
