@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "teacher_course_show" do %>
-    <div class="col-sm-12 d-flex flex-row h-100 p-2">
+    <div class="col-sm-12 d-flex flex-row h-25 p-2 border-bottom">
         <section class="col-6 h-100">
             <h5 class="card-title"><%= @course.name%></h5>
             <h6 class="card-subtitle mb-2 text-muted">
@@ -16,4 +16,24 @@
             <%= link_to "Edit", edit_course_path, data: {turbo_frame:"teacher_course_show"}, class:"btn btn-primary" %>
         </section>
     </div>
+    <div class="col-sm-12 d-flex flex-row h-75">
+        <section class="col-sm-8 border-end" >
+        
+        </section>
+        <aside class="col-sm-4">
+
+            <% @course.users.each do |student|%>
+                <li class="list-group-item"> 
+                <h1>first</h1>
+                    <%= student.user_name %>
+                    <h1>second</h1>
+                    <%= student.email %>
+                    <% if student.enrollments.first.banned != true %>
+                        <h1>Hello </h1>
+                        <% end %>
+                </li>
+            <% end %>
+        </aside>
+    </div>
+   
 <% end %>

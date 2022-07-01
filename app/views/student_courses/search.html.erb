@@ -1,0 +1,8 @@
+<main class="container">
+<h1>Searched <%= pluralize(@courses.length, 'Course')%> </h1>
+<ul class= "col-sm-8 mx-auto">
+<%= render partial: "student_courses/course", collection: @courses %>
+</ul>
+
+</main>
+<%= console %>

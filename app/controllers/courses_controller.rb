@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
 
 
     def filter
-        @courses = Course.where(user_id: current_user.id)
+        @courses = Course.where(user_id: current_user.id).order('name')
     end
 
     def show
@@ -23,16 +23,33 @@ class CoursesController < ApplicationController
     def update
         @course = Course.find(params[:id])
         if @course.update(course_params)
-            redirect_to course_path
+            redirect_to teachers_index_path
         else
             render :edit
         end
     end
 
+    def new
+        @course = Course.new
+    end
+
+    def create
+        @course = Course.create(course_params)
+
+        if @course.save
+            redirect_to root_path
+        else
+            render :new
+        end
+    end
+    
+
     private
 
     def only_teachers
-        if current_user.role!=2
+        if current_user.role ==2 ||params[:id] == nil
+            
+        elsif current_user.role!=2 || current_user.id != Course.find(params[:id].to_i).user_id
             redirect_to root_path, alert: "You are not authorized"
         end
     end
@@ -42,6 +59,6 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-        params.require(:course).permit(:name,:description,:year,:month,:active)
+        params.require(:course).permit(:name,:description,:year,:month,:active,:user_id)
     end
 end

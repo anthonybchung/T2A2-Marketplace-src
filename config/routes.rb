@@ -16,7 +16,13 @@ Rails.application.routes.draw do
   #----- courses ----
   get '/courses/filter', to: 'courses#filter', as: 'filter_list'
   resources :courses
+
+  #----- student_courses ---
+  get '/student_courses/search',to: 'student_courses#search', as: 'search_student_course'
+  resources :student_courses
  
+  #----- Enrolled users/students ----
+  resources :enrolled
 
   root "guests#index"
 end

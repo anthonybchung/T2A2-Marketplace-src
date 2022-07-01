@@ -6,7 +6,8 @@ class TeachersController < ApplicationController
     @courses = Course.where(user_id: @current_user, active: true)
   end
 
-
+  
+  private
   def only_teachers
     if current_user.role != 2
       redirect_to root_path

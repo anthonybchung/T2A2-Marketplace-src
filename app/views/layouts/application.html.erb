@@ -18,9 +18,10 @@
   <body style="height: 100vh">
    
     <%= render "layouts/navbar" %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class= "container">
+      <p class="notice fw-bold fs-4 bg-success text-white badge text-wrap"><%= notice %></p>
+      <p class="alert fw-bold fs-4 bg-danger text-white badge text-wrap"><%= alert %></p>
+    </div>
     <%= yield %>
   </body>
 </html>

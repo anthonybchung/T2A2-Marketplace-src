@@ -1,8 +1,9 @@
+<%= turbo_frame_tag "_top" do %>
 <main class="container d-flex flex-row" >
     <aside class="col-sm-2 h-100 border">
         <h1>Courses</h1>
         <div class="d-grid col-10 ms-1">
-        <%=link_to "New", new_course_path, class:"btn btn-primary" %>
+        <%=link_to "New", new_course_path, data: {turbo_frame: "teacher_course_show"}, class:"btn btn-primary" %>
         <%=link_to "Search", courses_path, class:"btn btn-primary mt-2" %>
         </div>
 
@@ -15,31 +16,25 @@
     </aside>
 
     <section class="col-sm-10 h-100 border">
+     <%= turbo_frame_tag "teacher_course_show" do %>
         <div class="h-25 border-bottom">
-            <%= turbo_frame_tag "teacher_course_show" do %>
+           
                 <h3> Name of course </h3>
-            <% end %>
+           
         </div>
 
         
         <div class="h-75 bg-primary d-flex flex-row">
             <div class="col-sm-9 h-100 border">
-                <h1>Hello</h1>
+                
             </div>
             <div class="col-sm-3 h-100 border">
-                <h1> Students</h1>
+               
             </div>
         </div>
+     <% end %>
     </section>
 
-<%
-=begin%>
- <%= turbo_frame_tag "newcourse" do %> 
-<%
-=end%>
-    <%
-=begin%>
- <%= link_to "New Course", new_course_path, class:"btn btn-primary"%> 
-<%
-=end%>
+
  </main>
+<% end %>

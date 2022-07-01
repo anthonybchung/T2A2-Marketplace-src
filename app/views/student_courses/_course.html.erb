@@ -1,0 +1,21 @@
+<li style="list-style-type: none">
+
+<div class="card my-2">
+    <div class="card-header">
+        <div class="fs-2"><%= course.name %><span class="fs-6 ms-2">(Course ID: <%= course.id %>)</span></div>
+    </div>
+  
+    <div class="card-body">
+        <h5 class="card-title">Cohort: <%= course.year %>/<%= course.month %></h5>
+    <p class="card-text">Description: <%= course.description %></p>
+    <% if Course.find(course.id).enrollments.length == 0%>
+        <%= link_to "Join Course", student_course_path(course.id), class: "btn btn-primary"%>
+    <% else %>
+        <%= link_to "Go to Course", student_course_path(course.id), class: "btn btn-success"%> All enrolled
+    <% end %>
+  </div>
+</div>
+
+
+
+</li>
