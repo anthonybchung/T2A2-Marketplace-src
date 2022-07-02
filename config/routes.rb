@@ -27,5 +27,8 @@ Rails.application.routes.draw do
   resources :enrolled
   patch '/enrolled/:id', to: 'enrolled#update', as: 'update_enrolled'
 
+  #----- Excusions ------
+  resources :excursions
+
   root "guests#index"
 end

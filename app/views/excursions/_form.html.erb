@@ -1,0 +1,31 @@
+<%= form_with model: @excursion do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <br/>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+    <br/>
+    <%= form.label :arrive_time %>
+    <%= form.datetime_local_field :arrive_time %>
+    <br/>
+    <%= form.label :street_number %>
+    <%= form.text_field :street_number %>
+    <br />
+    <%= form.label :street_name %>
+    <%= form.text_field :street_name %>
+    <br />
+    <%= form.label :suburb %>
+    <%= form.text_field :suburb %>
+    <br />
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+    <br />
+    <%= form.label :state %>
+    <%= form.number_field :state %>
+    <br />
+    <%= form.label :post_code %>
+    <%= form.number_field :post_code %>
+    <br />
+    <%= form.number_field :course_id, value: @course_id, type: "hidden"%>
+    <%= form.submit %>
+<% end %>

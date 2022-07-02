@@ -13,6 +13,8 @@
 <%= render partial: "courses/student", locals: {enrollments: @enrollments} %>
 </ul>
 
+<h2>There are <%= pluralize(@excursions.length, 'Excursions')%></h2>
+<%= link_to "New Excursion", new_excursion_path(course_id: params[:id]), class: "btn btn-primary"%>
 <ul>
 <%= render partial: "courses/excursion", locals: {excursions: @excursions} %>
 </ul>

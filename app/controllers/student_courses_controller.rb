@@ -33,6 +33,7 @@ class StudentCoursesController < ApplicationController
     #           - course_id
     def show
         @course = Course.find(params[:id])
+        @excursions = @course.excursions
         if(current_user != nil)
             if @course.enrollments.where(user_id: current_user.id).length==0
                 Enrollment.create(user_id: current_user.id, course_id: @course.id,banned: false)

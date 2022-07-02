@@ -8,5 +8,15 @@
 <li><%= @course.year %></li>
 <li><%= @course.month %></li>
 <li><%= @course.active %></li>
+
+
+<ul>
+<% @excursions.each do |excursion|%>
+    <li><%= excursion.name%></li>
+    <li><%= excursion.description %></li>
+    <br/>
+<% end %>
+</ul>
+
 </main>
 <%= console %>
