@@ -1,4 +1,6 @@
 class StudentCoursesController < ApplicationController
+    before_action :authenticate_user!
+    before_action :only_students
 
     #display search field to search for course.
     # search by I.D given by teacher.
@@ -31,11 +33,20 @@ class StudentCoursesController < ApplicationController
     #           - course_id
     def show
         @course = Course.find(params[:id])
-        puts current_user
-        Enrollment.create(user_id: current_user.id, course_id: @course.id)
+        if(current_user != nil)
+            if @course.enrollments.where(user_id: current_user.id).length==0
+                Enrollment.create(user_id: current_user.id, course_id: @course.id,banned: false)
+            end
+        end
         
     end
-    # def course_params
-    #     params[:course].permit(:id,:name,:user_id)
-    # end
+  
+
+    private
+
+    def only_students
+      if current_user.role != 1
+        redirect_to root_path
+      end
+    end
 end

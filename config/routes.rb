@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   #----- courses ----
   get '/courses/filter', to: 'courses#filter', as: 'filter_list'
+  get '/courses/search', to: 'courses#search', as: 'search_courses'
+  get '/courses/enrollment/:id', to: 'courses#enrollment', as: 'enrollment'
   resources :courses
 
   #----- student_courses ---
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
  
   #----- Enrolled users/students ----
   resources :enrolled
+  patch '/enrolled/:id', to: 'enrolled#update', as: 'update_enrolled'
 
   root "guests#index"
 end

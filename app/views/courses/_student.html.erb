@@ -1,0 +1,14 @@
+<% #make a student card to display the following %>
+<% # user_name, email, banned? %>
+
+<% enrollments.each do |enrollment| %>
+<p>
+    <%= enrollment.user.user_name %>
+    <%= enrollment.user.email %>
+    <%= link_to "edit details", edit_enrolled_path(enrollment.id) %>
+    </p>
+<% end %>
+
+
+
+

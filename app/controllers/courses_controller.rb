@@ -7,6 +7,22 @@ class CoursesController < ApplicationController
         @courses = Course.all
     end
 
+    def search
+        # serach by id.
+        if !params[:query].match?(/\D/)
+            @courses = []
+            @courses =  Course.where(id: params[:query].to_i, user_id: current_user).order(active: :desc)
+        else
+        # search by course name
+            @courses = Course.where(name: params[:query],user_id: current_user).order(active: :desc)
+        end
+       
+
+        if @courses.length == 0
+            @courses = Course.all
+        end
+    end
+
 
     def filter
         @courses = Course.where(user_id: current_user.id).order('name')
@@ -14,6 +30,9 @@ class CoursesController < ApplicationController
 
     def show
         @course = Course.find(params[:id])
+        @enrollments = @course.enrollments
+        @excursions = @course.excursions
+        
     end
 
     def edit
@@ -31,6 +50,10 @@ class CoursesController < ApplicationController
 
     def new
         @course = Course.new
+    end
+
+    def enrollment
+        @enrollment = Enrollment.find(params[:id])
     end
 
     def create

@@ -1,0 +1,10 @@
+<h3>User Name: <%= @enrollment.user.user_name %></h1>
+<h2>Email: <%= @enrollment.user.email %></h2>
+<%= @enrollment.id%>
+<%= form_with model: @enrollment do |form|%>
+    <%= form.label :active %>
+    <%= form.check_box :active %>
+    <%= form.submit %>
+<% end %>
+
+<%= console %>

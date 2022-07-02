@@ -8,10 +8,10 @@
     <div class="card-body">
         <h5 class="card-title">Cohort: <%= course.year %>/<%= course.month %></h5>
     <p class="card-text">Description: <%= course.description %></p>
-    <% if Course.find(course.id).enrollments.where(user_id: current_user.id).length == 0%>
-        <%= link_to "Join Course", student_course_path(course.id), class: "btn btn-primary"%>
+    <% if course.active%>
+        <%= link_to "Analyse Course", course_path(course.id), class: "btn btn-primary"%>
     <% else %>
-        <%= link_to "Go to Course", student_course_path(course.id), class: "btn btn-success"%> All enrolled
+        <%= link_to "Analyse Course", course_path(course.id), class: "btn btn-secondary"%> Non-Active
     <% end %>
   </div>
 </div>
