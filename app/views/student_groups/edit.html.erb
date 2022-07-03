@@ -1,0 +1,21 @@
+<h1>Edit Group</h1>
+<%= @excursion_id %>
+
+<%= form_with model: @group, url: update_student_group_path do |form| %>
+<%= form.label :description %>
+<%= form.text_area :description %>
+<br/>
+<%= form.label :suburb%>
+<%= form.text_field :suburb %>
+<br />
+<%= form.label :total_cost%>
+<%= form.number_field :total_cost %>
+<br />
+<%= form.label :passenger_no %>
+<%= form.number_field :passenger_no %>
+<br />
+<%= form.number_field :user_id, value: current_user.id %>
+<%= form.number_field :excursion_id,value: @excursion_id %>
+<%= form.submit %>
+<% end %>
+<%= console %>

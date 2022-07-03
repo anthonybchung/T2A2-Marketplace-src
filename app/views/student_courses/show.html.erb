@@ -14,6 +14,7 @@
 <% @excursions.each do |excursion|%>
     <li><%= excursion.name%></li>
     <li><%= excursion.description %></li>
+    <%= link_to "Go to", student_excursion_path(excursion.id), class: "btn btn-primary" %>
     <br/>
 <% end %>
 </ul>

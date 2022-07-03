@@ -30,5 +30,15 @@ Rails.application.routes.draw do
   #----- Excusions ------
   resources :excursions
 
+  #------ Student Excursions -----
+  resources :student_excursions
+
+  #------ Student Groups ----
+  resources :student_groups
+  patch '/student_group/:id', to: 'student_groups#update', as: 'update_student_group'
+
+  #------ passengers ------
+  resources :passengers
+
   root "guests#index"
 end
