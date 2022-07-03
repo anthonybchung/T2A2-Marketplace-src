@@ -20,6 +20,21 @@ class StudentGroupsController < ApplicationController
         @group = Group.find(params[:id])
         @group[:total_cost] = @group[:total_cost] /100
         @user_name = User.find(@group.user_id).user_name
+        @is_a_passenger = Passenger.where(group_id: @group.id, user_id: current_user.id).length
+
+        if @group[:user_id] == current_user.id
+            @is_a_driver = true
+        else
+            @is_a_driver = false
+        end
+       
+        if @group[:passenger_no] <= Passenger.where(group_id: @group[:id]).length
+            @full = true
+        else
+            @full = false
+        end
+
+        @passengers = Passenger.where(group_id: params[:id])
     end
 
     def edit

@@ -1,0 +1,9 @@
+<h1>are you sure you want to join this group?</h1>
+<h2>group id: <%= @passenger.group_id %></h2>
+<h2>user_id: <%= @passenger.user_id %></h2>
+<%= form_with model: @passenger do |form|%>
+    <%=form.number_field :group_id, value: @passenger.group_id, type: "hidden"%>
+    <%= form.number_field :user_id, value: @passenger.user_id,type: "hidden" %>
+    <%= form.submit %>
+<% end %>
+<%= console %>

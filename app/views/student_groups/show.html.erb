@@ -12,3 +12,23 @@ $<%= @group.total_cost%>
 <%= @user_name%>
 </br>
 
+<% if @is_a_passenger != 0 || @is_a_driver %>
+    <p>you are a driver or a passenger already in this group </p>
+<% elsif @full %>
+    <p> Car is full <p>
+<% else%>
+    <%= link_to "Join", new_passenger_path(group: @group), class: "btn btn-primary" %>
+<% end %>
+
+<ul>
+<% @passengers.each do |passenger|%>
+    <li>
+        <% user = passenger.user_id%> 
+        <%= User.find(user).user_name%>
+    </li>
+<% end%>
+</ul>
+
+
+<%= console %>
+
