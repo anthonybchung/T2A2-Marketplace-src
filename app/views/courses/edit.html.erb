@@ -1,5 +1,5 @@
-<%= turbo_frame_tag "teacher_course_show" do %>
-    <%= form_with model: @course, data: {turbo: false} do |form| %>
+<%= turbo_frame_tag "courses_result" do %>
+    <%= form_with model: @course  do |form| %>
         <section class="d-flex flex-row">
            
            <div class="col-6">
@@ -35,7 +35,7 @@
             <%= form.text_area :description, class:"form-control" %>
             <div class="row">
                 <%= form.submit class:"btn btn-primary col-sm-4 ms-5 mt-3"%>
-                <%= link_to "Cancel", root_path, class: "btn btn-primary col-sm-4 ms-5 mt-3" %>
+                <%= link_to "Cancel", course_path(@course.id), class: "btn btn-primary col-sm-4 ms-5 mt-3" %>
             </div>
            </div>
         </section>

@@ -1,11 +1,16 @@
-<h1>Hello world</h1>
+<%= turbo_frame_tag "courses_result" do%>
+    <h4>Student Name: <%= @enrollment.course_id %></h4>
+    <% student_id = @enrollment.user_id%>
+    <% student_name = User.find(student_id).user_name %>
+    <h4>Student Email: <%=student_name%></h4>
 
-<%= form_with model: @enrollment, url: update_enrolled_path do |form|%>
-    <%= form.number_field :course_id%>
-    <%= form.number_field :user_id %>
-    <%= form.label :banned%>
-    <%= form.check_box :banned %>
-    <%= form.submit %>
+    <%= form_with model: @enrollment, url: update_enrolled_path do |form|%>
+        <%= form.number_field :course_id, type: "hidden"%>
+        <%= form.number_field :user_id, type: "hidden"%>
+        <%= form.label :banned%>
+        <%= form.check_box :banned %>
+        <br/>
+        <%= form.submit class: "btn btn-primary"%>
+    <% end %>
 <% end %>
-
 <%= console%>

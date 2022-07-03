@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
     def update
         @course = Course.find(params[:id])
         if @course.update(course_params)
-            redirect_to teachers_index_path
+            redirect_to course_path(params[:id])
         else
             render :edit
         end
@@ -60,7 +60,7 @@ class CoursesController < ApplicationController
         @course = Course.new(course_params)
 
         if @course.save
-            redirect_to root_path
+            redirect_to course_path(@course.id)
         else
             render :new
         end

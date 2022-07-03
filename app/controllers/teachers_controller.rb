@@ -9,7 +9,9 @@ class TeachersController < ApplicationController
   
   private
   def only_teachers
-    if current_user.role != 2
+    if current_user == nil
+      redirect_to root_path
+    elsif current_user.role != 2
       redirect_to root_path
     end
   end
