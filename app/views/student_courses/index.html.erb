@@ -14,6 +14,11 @@
             <%= form.submit "Search" %>
             </span>
         <% end %>
-    
+        <%= turbo_stream.replace "flash_messages" do %>
+        <div id="flash_messages">
+        <p class="alert"><%= alert %></p>
+        <p class="notice"><%= notice %></p>
+        </div>
+        <% end %>
     </div>
 </main>

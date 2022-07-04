@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
 
     def search
         # serach by id.
-        if !params[:query].match?(/\D/)
+        if !params[:query].match?(/\D+/)
             @courses = []
             @courses =  Course.where(id: params[:query].to_i, user_id: current_user).order(active: :desc)
         else
@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
        
 
         if @courses.length == 0
-            @courses = Course.all
+            @courses = Course.where(user_id: current_user)
         end
     end
 

@@ -1,29 +1,43 @@
-<h1>Course </h1>
-<%= @excursion.name %>
-<%= @excursion.description %>
-<%= @excursion.street_number %>
-<%= @excursion.street_name %>
-<%= @excursion.suburb %>
-<%= @excursion.city %>
-<%= @excursion.state %>
-<%= @excursion.post_code %>
+<%= turbo_frame_tag "student_excursion" do %>
+<h5>Excursion Name: <%= @excursion.name%></h5>
+<p class="border">Description: <%=@excursion.description%><p>
+<p>Address: <%= @excursion.street_number%> <%= @excursion.street_name%>, <%= @excursion.suburb%> <%= @excursion.city%>, <%= @excursion.state%> <%= @excursion.post_code%> </p>
 
-<% @groups.each do |group|%>
-<br/>
-<br/>
-    groupID:<%= group.id %><br/>
-    description:<%= group.description %><br/>
-    pick up point: <%= group.suburb%><br/>
-    total_cost:$<%= group.total_cost.to_i/100 %><br/>
-    <br/>
-    User Id:<%= User.find(group.user_id).user_name%>
-    <br/>
-    <%= group.passenger_no %>
-    <%= link_to "Show", student_group_path(group.id),class: "btn btn-primary"%>
-    
-    <%if current_user.id == group.user_id %>
-        <%= link_to "Edit", edit_student_group_path(excursion_id: @excursion.id,id:group.id), class: "btn btn-primary" %>
-    <% end %>
+
+
+<div class="border overflow-scroll" style="height: 400px">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Pick Up Point</th>
+                <th scrope="col">Description</th>
+                <th scope="col">Driver</th>
+                <th scope="col">Total Cost</th>
+                <th scope="col">Passenger Number</th>
+                <th scope="col">Edit Group </th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @groups.each do |group|%>
+            <tr>
+                <td><%= group.suburb %></td>
+                <td><%= group.description%></td>
+                <td><%= User.find(group.user_id).user_name %></td>
+                <td><%= group.total_cost.to_f/100%></td>
+                <td><%= group.passenger_no %></td>
+                <%if current_user.id == group.user_id %>
+                    <td><%= link_to "Edit", edit_student_group_path(excursion_id: @excursion.id,id:group.id), class: "btn btn-primary" %></td>
+                <% else %>
+                <td></td>
+                <% end %>
+            </tr>
+        <% end%>
+        </tbody>
+    </table>
+</div>
+
+<% if @is_a_driver.length == 0 %>
+<%= link_to "Create Group", new_student_group_path(excursion_id: @excursion.id), class: "btn btn-primary"%>
+<% end %>
 <% end %>
 
-<%= link_to "Create Group", new_student_group_path(excursion_id: @excursion.id), class: "btn btn-primary"%>
