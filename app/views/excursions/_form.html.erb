@@ -1,31 +1,52 @@
 <%= form_with model: @excursion do |form| %>
+<div class="d-flex flex-row col-sm-8 mx-auto">
+<section class="col-sm-6">
+<div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
-    <br/>
+    <%= form.text_field :name, class:"form-control"%>
+</div>
+<div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description %>
-    <br/>
+    <%= form.text_area :description, class:"form-control" %>
+</div>
+<div class="form-group">
     <%= form.label :arrive_time %>
-    <%= form.datetime_local_field :arrive_time %>
-    <br/>
+    <%= form.datetime_local_field :arrive_time,class:"form-control", required: true%>
+</div>
+</section>
+<section class="col-sm-6 ps-2">
+<div class="form-group">
     <%= form.label :street_number %>
-    <%= form.text_field :street_number %>
-    <br />
+    <%= form.text_field :street_number, class:"form-control" %>
+</div>
+<div class="form-group">
     <%= form.label :street_name %>
-    <%= form.text_field :street_name %>
-    <br />
+    <%= form.text_field :street_name,class:"form-control" %>
+</div>
+<div class="form-group">
     <%= form.label :suburb %>
-    <%= form.text_field :suburb %>
-    <br />
+    <%= form.text_field :suburb,class:"form-control" %>
+</div>
+<div class="form-group">
     <%= form.label :city %>
-    <%= form.text_field :city %>
-    <br />
+    <%= form.text_field :city,class:"form-control" %>
+</div>
+<div class="form-group">
     <%= form.label :state %>
-    <%= form.number_field :state %>
-    <br />
+    <%= form.number_field :state,class:"form-control" %>
+</div>
+<div class="form-group">
     <%= form.label :post_code %>
-    <%= form.number_field :post_code %>
-    <br />
+    <%= form.number_field :post_code,class:"form-control" %>
+</div>
+<div class="ps-3">
     <%= form.number_field :course_id, value: @course_id, type: "hidden"%>
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary mt-3 col-sm-5" %>
+    <%= link_to "Cancel", course_path(@excursion.course_id), class: "btn btn-primary btn-block ms-2 mt-3 col-sm-5"%>
+</div>
+
+</section> 
+</div>
 <% end %>
+
+

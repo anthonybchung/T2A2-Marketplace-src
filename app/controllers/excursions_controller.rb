@@ -1,8 +1,9 @@
 class ExcursionsController < ApplicationController
 
     def new
-        @excursion = Excursion.new
         @course_id = params[:course_id].to_i
+        @excursion = Excursion.new
+        @excursion.course_id = params[:course_id].to_i
     end
 
     def create
@@ -25,6 +26,20 @@ class ExcursionsController < ApplicationController
         if @excursion.update(excursion_params)
             
             redirect_to course_path(@excursion.course_id)
+        else
+            render :edit
+        end
+    end
+
+    def show
+
+    end
+
+    def destroy
+        @excursion = Excursion.find(params[:id])
+        course_id = @excursion.course_id
+        if @excursion.destroy
+            redirect_to course_path(course_id), status: 303,data: {turbo_method: :get}
         else
             render :edit
         end

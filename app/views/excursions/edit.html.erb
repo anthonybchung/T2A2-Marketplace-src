@@ -1,5 +1,14 @@
-<h1>Excursion</h1>
+<%= turbo_frame_tag "courses_result" do%>
+<div class="container">
+<h4>Edit Excursion</h4>
 
 <%= render "excursions/form" %>
+<section class="col-sm-8 mx-auto ps-3">
+    <div class="col-sm-6 ms-auto ps-2 mt-2">
+        <%= link_to "Delete Excursion", excursion_path(@excursion.id),data: {turbo_method: :delete}, class:"btn btn-primary col-sm-5 ms-1" %>
+    </div>
+</section>
 
-<%= console %>
+</div>
+<% end %>
+

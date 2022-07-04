@@ -1,14 +1,9 @@
 <% excursions.each do |excursion| %>
-<p>
-<%= excursion.name %>
-<%= excursion.description %>
-<%= excursion.arrive_time %>
-<%= excursion.street_number %>
-<%= excursion.street_name %>
-<%= excursion.suburb %>
-<%= excursion.state %>
-<%= excursion.post_code %>
-</p>
-<%= link_to "edit details", edit_excursion_path(excursion.id), class: "btn btn-primary" %>
-
+<tr>
+    <td><%= excursion.name %></td>
+    <td><%= excursion.description %></td>
+    <td><%= excursion.arrive_time.to_fs(:short)%></td>
+    <td><%= excursion.street_number %> <%= excursion.street_name%> <%= excursion.suburb%> <%= excursion.state%> <%= excursion.post_code%>
+    <td><%= link_to "edit details", edit_excursion_path(excursion.id), data: {turbo_frame: "courses_result"} %></td>
+</tr>
 <% end %>

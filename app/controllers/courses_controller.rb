@@ -65,6 +65,15 @@ class CoursesController < ApplicationController
             render :new
         end
     end
+
+    def destroy
+        @course = Course.find(params[:id])
+        if @course.destroy
+            redirect_to root_path, status: 303,data: {turbo_method: :get}
+        else
+            render :show
+        end
+    end
     
 
     private

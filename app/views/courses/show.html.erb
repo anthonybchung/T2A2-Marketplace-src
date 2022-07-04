@@ -1,10 +1,10 @@
 <%= turbo_frame_tag "courses_result" do%>
 <main class="border mt-3 px-2 d-flex">
 <!-- Course details -->
-<section class="col-sm-6">
+<section class="col-sm-6 pe-2">
 <h5>Course Name: <%= @course.name %></h5>
 <p>Course ID:<%= @course.id %></p>
-<p>Cohort: <%= @course.year %>/<%= @course.month %>
+<p>Cohort: <%= @course.year %>/<%= @course.month %></p>
 <p>Description</p>
 <p class="h-25 border"><%= @course.description %></p>
 <p>Active: 
@@ -24,13 +24,14 @@
 </p>
 
 <%= link_to "Edit", edit_course_path, class: "btn btn-primary col-sm-2" %>
+<%= link_to "Delete", course_path(@course.id),data: {turbo_method: :delete}, class: "btn btn-primary col-sm-5 ms-1"%>
 </section>
 
-<section class="col-sm-6">
+<section class="col-sm-6 px-2">
 <!-- List students -->
-<h2>There are <%= pluralize(@enrollments.length, 'Students')%></h2>
+<h5>There are <%= pluralize(@enrollments.length, 'Students')%></h5>
 
-<div class="overflow-scroll" style="height: 200px">
+<div class="overflow-scroll" style="height: 180px">
 <table class="table table-striped">
   <thead>
     <tr>
@@ -44,12 +45,29 @@
   </tbody>
 </table>
 </div>
-<h2>There are <%= pluralize(@excursions.length, 'Excursions')%></h2>
-<%= link_to "New Excursion", new_excursion_path(course_id: params[:id]), class: "btn btn-primary"%>
-<ul>
-<%= render partial: "courses/excursion", locals: {excursions: @excursions} %>
-</ul>
-<% end %>
+
+<hr>
+
+<!-- List Excursions -->
+
+<h5>There are <%= pluralize(@excursions.length, 'Excursions')%></h5>
+<%= link_to "New Excursion", new_excursion_path(course_id: @course.id),class: "btn btn-primary"%>
+<div class="overflow-scroll" style="height: 280px">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Arrive Time</th>
+      <th scope="col">Address</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <%= render partial: "courses/excursion", locals: {excursions: @excursions} %>
+</table>
+</div>
 </section>
 </main>
 
+<%= console %>
+<% end %>
