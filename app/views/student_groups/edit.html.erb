@@ -1,21 +1,26 @@
-<h1>Edit Group</h1>
-<%= @excursion_id %>
+<%= turbo_frame_tag "student_excursion" do%>
+<h5>Edit Group</h5>
 
-<%= form_with model: @group, url: update_student_group_path do |form| %>
-<%= form.label :description %>
-<%= form.text_area :description %>
-<br/>
-<%= form.label :suburb%>
-<%= form.text_field :suburb %>
-<br />
-<%= form.label :total_cost%>
-<%= form.number_field :total_cost %>
-<br />
-<%= form.label :passenger_no %>
-<%= form.number_field :passenger_no %>
-<br />
-<%= form.number_field :user_id, value: current_user.id %>
-<%= form.number_field :excursion_id,value: @excursion_id %>
-<%= form.submit %>
+    <%= form_with model: @group, url: update_student_group_path do |form| %>
+    <div class="mb-2 row pe-4">
+        <%= form.label :description, class:"col-form-label" %>
+        <%= form.text_area :description, class:"form-control ms-2 me-4"%>
+    </div>
+    <div class="mb-2 row pe-4">
+        <%= form.label :suburb, class:"col-form-label"%>
+        <%= form.text_field :suburb, class:"form-control ms-2 me-4" %>
+    </div>
+    <div class="mb-2 row pe-4">
+        <%= form.label "Total Cost ($)", class:"col-form-label"%>
+        <%= form.number_field :total_cost, class:"form-control ms-2 me-4" %>
+    </div>
+    <div class="mb-2 row pe-4">
+        <%= form.label :passenger_no, class:"col-form-label" %>
+        <%= form.number_field :passenger_no, class:"form-control ms-2 me-4" %>
+    </div>
+    <%= form.number_field :user_id, value: current_user.id, type: "hidden"%>
+    <%= form.number_field :excursion_id,value: @excursion_id, type: "hidden" %>
+    <%= form.submit class: "btn btn-primary" %>
+    <% end %>
+    <%= link_to "Delete", student_group_path, data: {turbo_method: :delete},class:"btn btn-primary col-sm-2 mt-2"%>
 <% end %>
-<%= console %>

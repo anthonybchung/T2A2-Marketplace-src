@@ -5,4 +5,6 @@ class Excursion < ApplicationRecord
     has_many :users, through: :enlistments
 
     has_many :groups
+
+    has_many :passengers, through: :groups
 end

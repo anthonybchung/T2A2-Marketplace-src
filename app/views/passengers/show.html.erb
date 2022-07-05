@@ -1,5 +1,4 @@
-<%= turbo_frame_tag "student_excursion" do%>
-
+<%= turbo_frame_tag "student_excursion" do %>
 <h5>Excursion: <%= @excursion.name%> </h5>
 <p>Description: <%= @excursion.description%></p>
 <p>Suburb: <%= @excursion.suburb %>
@@ -26,7 +25,5 @@
     <% end %>
     </tbody>
 </table>
-<hr>
-<h5>Are you sure you want to join this group?</h5>
-<%= link_to "Join Group", passengers_path(group: @group), data: {turbo_method: :post},class: "btn btn-primary"%>
+<%= link_to "Leave Group", passenger_path(@group.id), data: {turbo_method: :delete}, class:"btn btn-primary"%>
 <% end %>

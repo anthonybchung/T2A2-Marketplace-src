@@ -2,5 +2,5 @@ class Group < ApplicationRecord
   belongs_to :user
   belongs_to :excursion
 
-  has_many :groups
+  has_many :passengers
 end

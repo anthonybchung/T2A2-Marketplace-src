@@ -1,43 +1,52 @@
 <%= turbo_frame_tag "student_excursion" do %>
-<h5>Excursion Name: <%= @excursion.name%></h5>
-<p class="border">Description: <%=@excursion.description%><p>
-<p>Address: <%= @excursion.street_number%> <%= @excursion.street_name%>, <%= @excursion.suburb%> <%= @excursion.city%>, <%= @excursion.state%> <%= @excursion.post_code%> </p>
+    <h5>Excursion Name: <%= @excursion.name%></h5>
+    <p class="border">Description: <%=@excursion.description%><p>
+    <p>Address: <%= @excursion.street_number%> <%= @excursion.street_name%>, <%= @excursion.suburb%> <%= @excursion.city%>, <%= @excursion.state%> <%= @excursion.post_code%> </p>
+    <p class="alert text-danger"><%= alert %></p>
+    <p class="notice text-success"><%= notice %></p>
 
 
+    <div class="border overflow-scroll" style="height: 400px">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Pick Up Point   </th>
+                    <th scrope="col">Description</th>
+                    <th scope="col">Driver</th>
+                    <th scope="col">Total Cost</th>
+                    <th scope="col">Passenger Number</th>
+                    <th scope="col">Edit Group </th>
+                </tr>
+            </thead>
+            <tbody>
+            <% @groups.each do |group|%>
+                <tr>
+                    <td><%= group.suburb %></td>
+                    <td><%= group.description%></td>
+                    <td><%= User.find(group.user_id).user_name %></td>
+                    <td><%= group.total_cost.to_f/100%></td>
+                    <% no_of_passengers = Group.find(group.id).passengers.length %>
+                    <td><%= no_of_passengers%>/<%= group.passenger_no %></td>
+                    <%if current_user.id == group.user_id %>
+                        <td><%= link_to "Edit", edit_student_group_path(excursion_id: @excursion.id,id:group.id), class: "btn btn-primary" %></td>
+                    <%elsif !@is_a_driver && !@is_a_passenger%>
+                        <%if no_of_passengers < group.passenger_no%>
+                            <td> <%= link_to "Join",  new_passenger_path(group: group.id), data: {turbo_frame: "student_excursion"},class: "btn btn-primary"%></td>
+                        <% else%>
+                           <td> <div class="btn btn-danger">Full</div></td>
+                        <% end %>
+                    <% elsif Group.find(group.id).passengers.where(user_id: current_user.id).first%>
+                        <td> <%= link_to "Open", passenger_path(group.id),data: {turbo_frame: "student_excursion"}, class: "btn btn-primary" %></td>
+                    <% end %>
+                </tr>
+            <% end%>
 
-<div class="border overflow-scroll" style="height: 400px">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Pick Up Point</th>
-                <th scrope="col">Description</th>
-                <th scope="col">Driver</th>
-                <th scope="col">Total Cost</th>
-                <th scope="col">Passenger Number</th>
-                <th scope="col">Edit Group </th>
-            </tr>
-        </thead>
-        <tbody>
-        <% @groups.each do |group|%>
-            <tr>
-                <td><%= group.suburb %></td>
-                <td><%= group.description%></td>
-                <td><%= User.find(group.user_id).user_name %></td>
-                <td><%= group.total_cost.to_f/100%></td>
-                <td><%= group.passenger_no %></td>
-                <%if current_user.id == group.user_id %>
-                    <td><%= link_to "Edit", edit_student_group_path(excursion_id: @excursion.id,id:group.id), class: "btn btn-primary" %></td>
-                <% else %>
-                <td></td>
-                <% end %>
-            </tr>
-        <% end%>
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
 
-<% if @is_a_driver.length == 0 %>
-<%= link_to "Create Group", new_student_group_path(excursion_id: @excursion.id), class: "btn btn-primary"%>
-<% end %>
+    <% if !@is_a_driver && !@is_a_passenger %>
+        <%= link_to "Create Group", new_student_group_path(excursion_id: @excursion.id), data: {turbo_frame: "student_excursion"},class: "btn btn-primary"%>
+    <% end %>
 <% end %>
 
