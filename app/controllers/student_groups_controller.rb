@@ -71,7 +71,7 @@ class StudentGroupsController < ApplicationController
     private
 
     def group_params
-        params.require(:group).permit(:description,:total_cost,:passenger_no,:user_id,:excursion_id,:suburb,:id)
+        params.require(:group).permit(:description,:total_cost,:passenger_no,:user_id,:excursion_id,:suburb,:id,:image)
     end
 
 end

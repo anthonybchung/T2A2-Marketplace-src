@@ -21,6 +21,13 @@
     <%= f.radio_button :role, 2 %> Teacher
   </div>
   
+  <div class="field"%>
+    <%= image_tag(resource.image, width: "200px") if resource.image.attached?%>
+  </div>
+  
+  <div class="field mt-3">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
   </div>
 
   <div class="field">

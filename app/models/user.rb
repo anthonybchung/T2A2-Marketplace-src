@@ -14,4 +14,6 @@ class User < ApplicationRecord
 
   has_many :groups
 
+  has_one_attached :image
+
 end
