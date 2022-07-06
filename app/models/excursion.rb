@@ -7,4 +7,6 @@ class Excursion < ApplicationRecord
     has_many :groups
 
     has_many :passengers, through: :groups
+
+    has_one_attached :image
 end

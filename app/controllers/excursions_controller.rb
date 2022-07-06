@@ -47,7 +47,7 @@ class ExcursionsController < ApplicationController
 
     private
     def excursion_params
-        params.require(:excursion).permit(:name,:description,:arrive_time,:street_number,:street_name,:suburb,:city,:state,:post_code,:course_id)
+        params.require(:excursion).permit(:name,:description,:arrive_time,:street_number,:street_name,:suburb,:city,:state,:post_code,:course_id,:image)
     end
 
 end

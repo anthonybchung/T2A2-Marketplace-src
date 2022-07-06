@@ -1,18 +1,19 @@
 <%= turbo_frame_tag "student_excursion" do%>
 <h5>Edit Group</h5>
-
     <%= form_with model: @group, url: update_student_group_path do |form| %>
+
+    <div class="mb-2 row pe-4"%>
+        <%= image_tag(@group.image, witdth: "70px") if @group.image.attached?%>
+        <%= form.label "Vehicle" if @group.image.attached? %>  
+    </div>
+
     <div class="mb-2 row pe-4">
         <%= form.label :description, class:"col-form-label" %>
         <%= form.text_area :description, class:"form-control ms-2 me-4"%>
     </div>
 
-    <div class="mb-2 row pe-4"%>
-        <%= image_tag(@group.image, width: "200px") if @group.image.attached?%>
-    </div>
-  
     <div class="field mt-3">
-        <%= form.label :image %>
+        <%= form.label "Vehicle" %>
         <%= form.file_field :image %>
     </div>
 

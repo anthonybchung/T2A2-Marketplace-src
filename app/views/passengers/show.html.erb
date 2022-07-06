@@ -26,4 +26,5 @@
     </tbody>
 </table>
 <%= link_to "Leave Group", passenger_path(@group.id), data: {turbo_method: :delete}, class:"btn btn-primary"%>
+<%= link_to "Cancel", student_excursion_path(@excursion.id), class: "btn btn-primary"%>
 <% end %>

@@ -1,16 +1,10 @@
-<main class="container">
-    <h1>Search Course by using:</h1>
-    <ul>
-        <li>Course Name </li>
-        <li>Course I.D </li>
-    </ul>
-    <div class ="col-sm-6">
-        <%= form_with url:"courses/search", method: :get  do |form | %>
-            <%= form.label :query, "Search for:" %>
-            <%= form.search_field :query %>
+<%=turbo_frame_tag "courses_result" do %>
+    
 
-            <%= form.submit "Search" %>
-        <% end %>
-        
-    </div>
+<main class="container">
+    <p class="alert text-danger"><%= alert %></p>
+    <p class="notice"><%= notice %></p>
 </main>
+
+
+<% end %>
