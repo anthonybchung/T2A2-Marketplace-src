@@ -7,6 +7,8 @@ class ExcursionsController < ApplicationController
         @excursion.course_id = params[:course_id].to_i
     end
 
+    # once created/updated/destroyed excursion.
+    # the app should be redirected to course_path to display what course the user was currently on.
     def create
         @excursion = Excursion.new(excursion_params)
         if @excursion.save
@@ -37,6 +39,7 @@ class ExcursionsController < ApplicationController
     end
 
     def destroy
+        # status 303 must be introduced to convert turbo_method destroy back to get.
         @excursion = Excursion.find(params[:id])
         course_id = @excursion.course_id
         if @excursion.destroy

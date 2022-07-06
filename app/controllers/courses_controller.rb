@@ -9,6 +9,7 @@ class CoursesController < ApplicationController
 
     def search
         # serach by id and only select those that belongs to the current user.
+        #list all active courses on top of the list first.
         if !params[:query].match?(/\D+/)
             @courses = []
             @courses =  Course.where(id: params[:query].to_i, user_id: current_user).order(active: :desc)
@@ -25,6 +26,7 @@ class CoursesController < ApplicationController
 
 
     def filter
+        # get courses that was created by the current user and order it by name.
         @courses = Course.where(user_id: current_user.id).order('name')
     end
 
@@ -39,17 +41,22 @@ class CoursesController < ApplicationController
     end
 
     def edit
+        #user will select a course the view will pass the course_id to edit.
         @course = Course.find(params[:id])
     end
 
     def update
+        #after the update button is clicked
+        #find a course.
         @course = Course.find(params[:id])
         new_name = course_params[:name]
+
+        # check if a course name is already created by current_user.
+        #find the existing name in the database.
+        #if the course.id in the edit is different to the course.id that was searched by name
+        # then the course name is not valid.
         existing_name = Course.where(name: new_name).first
       
-        # check if a course name is already created by current_user.
-        # if name already exist, it will be redirected to the edit page with an alert.
-        # if no name is the same. Update may proceed.
         if params[:id].to_i != existing_name.id.to_i
             redirect_to edit_course_path(params[:id]), alert: 'You already have created a course after this name. Choose another'
         else
@@ -59,10 +66,14 @@ class CoursesController < ApplicationController
     end
 
     def new
+        #inform the form that it will be a create/new button
         @course = Course.new
     end
 
     def enrollment
+        #user will choose a student, the link_to will pass a User/Student id.
+        # This student ID will be used to retrieve the enrollment of the student
+        # The teacher can now edit the student's enrollment status on the view.
         @enrollment = Enrollment.find(params[:id])
     end
 
@@ -70,8 +81,9 @@ class CoursesController < ApplicationController
         @course = Course.new(course_params)
         
         # check if a course name is already created by current_user.
-        # if name already exist, it will be redirected to the edit page with an alert.
-        # if no name is the same. Update may proceed.
+        # if name already exist, it will return an array greater than 0.
+        # then the app will be redirected to the edit page with an alert.
+        # if no name is the same. Update may proceed because array length will be 0.
 
         if Course.where(name: @course.name, user_id: current_user.id).length > 0
             redirect_to new_course_path, alert: 'You have created a course after this name. Choose another'
