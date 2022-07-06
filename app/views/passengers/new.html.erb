@@ -29,4 +29,5 @@
 <hr>
 <h5>Are you sure you want to join this group?</h5>
 <%= link_to "Join Group", passengers_path(group: @group), data: {turbo_method: :post},class: "btn btn-primary"%>
+<%= link_to "Cancel", student_excursion_path(@excursion.id), class: "btn btn-primary"%>
 <% end %>

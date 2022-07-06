@@ -41,10 +41,14 @@ class CoursesController < ApplicationController
 
     def update
         @course = Course.find(params[:id])
-        if @course.update(course_params)
-            redirect_to course_path(params[:id])
+        new_name = course_params[:name]
+        existing_name = Course.where(name: new_name).first
+      
+        if params[:id].to_i != existing_name.id.to_i
+            redirect_to edit_course_path(params[:id]), alert: 'You have created a course after this name. Choose another'
         else
-            render :edit
+            @course.update(course_params)
+            redirect_to course_path(params[:id])
         end
     end
 
@@ -58,20 +62,23 @@ class CoursesController < ApplicationController
 
     def create
         @course = Course.new(course_params)
-
-        if @course.save
-            redirect_to course_path(@course.id)
+        if Course.where(name: @course.name, user_id: current_user.id).length > 0
+            redirect_to new_course_path, alert: 'You have created a course after this name. Choose another'
         else
-            render :new
+            @course.save
+            redirect_to course_path(@course.id)
         end
     end
 
     def destroy
         @course = Course.find(params[:id])
-        if @course.destroy
-            redirect_to root_path, status: 303,data: {turbo_method: :get}
+        course_id = params[:id]
+        if @course.users.length > 0
+            redirect_to courses_path, status: 303, data: {turbo_method: :get},alert: "Can not delete course because there are students in the course. You can make it in active."
         else
-            render :show
+            @course.destroy
+            redirect_to root_path, status: 303,data: {turbo_method: :get}
+            
         end
     end
     

@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "courses_result" do %>
+    <p class="alert text-danger"><%= alert %></p>  
     <%= form_with model: @course  do |form| %>
         <section class="d-flex flex-row">
            

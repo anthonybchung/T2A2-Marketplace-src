@@ -1,5 +1,6 @@
 <%= turbo_frame_tag "student_excursion" do %>
     <h5>Excursion Name: <%= @excursion.name%></h5>
+     <%= image_tag(@excursion.image, style: "width: 150px;") if @excursion.image.attached?%>
     <p class="border">Description: <%=@excursion.description%><p>
     <p>Address: <%= @excursion.street_number%> <%= @excursion.street_name%>, <%= @excursion.suburb%> <%= @excursion.city%>, <%= @excursion.state%> <%= @excursion.post_code%> </p>
     <p class="alert text-danger"><%= alert %></p>
@@ -21,8 +22,11 @@
                 <tr>
                     <td><%= group.suburb %></td>
                     <td><%= group.description%></td>
-                    <td><%= User.find(group.user_id).user_name %></td>
-                    <td><%= group.total_cost.to_f/100%></td>
+                    <td>
+                        <%= image_tag current_user.image, style: "with: 50px; height: 50px"  if current_user.image.attached?%>
+                        <%= User.find(group.user_id).user_name %>
+                    </td>
+                    <td><%= number_to_currency(group.total_cost.to_f/100)%></td>
                     <% no_of_passengers = Group.find(group.id).passengers.length %>
                     <td><%= no_of_passengers%>/<%= group.passenger_no %></td>
                     <%if current_user.id == group.user_id %>

@@ -7,7 +7,7 @@
         <p>Course ID: <%= @course.id %></p>
         <p>Cohort: <%= @course.year%>/<%= @course.month%></p>
         <p>Description</p>
-        <p class="border" style="height: 150px"><%= @course.description%></p>
+        <p class="border" style="height: 100px"><%= @course.description%></p>
         <p>Active: 
         <% if @course.active %>
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="blue" class="bi bi-check2-square" viewBox="0 0 16 16">
@@ -22,6 +22,7 @@
             </svg>
         <% end %>
         </p>
+
 
         <div class="border overflow-scroll" style="height: 300px">
         <table class="table table-striped">
