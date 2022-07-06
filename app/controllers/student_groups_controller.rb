@@ -1,4 +1,5 @@
 class StudentGroupsController < ApplicationController
+    before_action :authenticate_user!
     def new
        @excursion_id = params[:excursion_id]
        @group = Group.new

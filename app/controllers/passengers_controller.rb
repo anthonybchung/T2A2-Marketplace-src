@@ -1,4 +1,6 @@
 class PassengersController < ApplicationController
+    before_action :authenticate_user!
+
     def new
         @group = Group.find(params[:group])
         @driver = User.find(@group.user_id)

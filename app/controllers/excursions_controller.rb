@@ -1,5 +1,6 @@
 class ExcursionsController < ApplicationController
-
+    before_action :authenticate_user!
+    
     def new
         @course_id = params[:course_id].to_i
         @excursion = Excursion.new

@@ -1,4 +1,5 @@
 class GuestsController < ApplicationController
+ 
   def index
     if current_user == nil
       #do nothing

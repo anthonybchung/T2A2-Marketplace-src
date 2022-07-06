@@ -1,4 +1,5 @@
 class StudentExcursionsController < ApplicationController
+    before_action :authenticate_user!
     def show
         @excursion = Excursion.find(params[:id])
         @groups = @excursion.groups
