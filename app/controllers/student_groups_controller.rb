@@ -1,13 +1,17 @@
 class StudentGroupsController < ApplicationController
     before_action :authenticate_user!
     def new
+        #a group has an excursion_id foreign key.
+        #a the id is passed in and needs to be passed onto the view for a default value to create a new group
        @excursion_id = params[:excursion_id]
        @group = Group.new
     end
 
     def create
         @group = Group.new(group_params)
+        #it is advised to use integers for currency.
         cost = group_params[:total_cost].to_i * 100
+        #after multiplying the params in dollar to cent.
         @group.total_cost = cost
 
         if @group.save
@@ -15,26 +19,6 @@ class StudentGroupsController < ApplicationController
         else
             redirect :new
         end
-    end
-
-    def show
-        @group = Group.find(params[:id])
-        @group[:total_cost] = @group[:total_cost] /100
-        @user_name = User.find(@group.user_id).user_name
-        @is_a_passenger = Passenger.where(group_id: @group.id, user_id: current_user.id).length
-        if @group[:user_id] == current_user.id
-            @is_a_driver = true
-        else
-            @is_a_driver = false
-        end
-
-       
-        if @group[:passenger_no] <= Passenger.where(group_id: @group[:id]).length
-            @full = true
-        else
-            @full = false
-        end
-        @passengers = Passenger.where(group_id: params[:id])
     end
 
     def edit
@@ -49,7 +33,6 @@ class StudentGroupsController < ApplicationController
         cost  = updated_group[:total_cost].to_i * 100
         updated_group[:total_cost] = cost
        
-
         if @group.update(updated_group)
             redirect_to student_excursion_path(@group.excursion_id)
         else
@@ -60,6 +43,8 @@ class StudentGroupsController < ApplicationController
     def destroy
         @group = Group.find(params[:id])
         excursion_id = @group.excursion_id
+        #only delete group if there is no passengers.
+        #Dont want to delete a group without informing the passengers.
         if @group.passengers.length > 0
             
             redirect_to student_excursion_path(excursion_id),status: 303, data:{turbo_method: :get}, alert: 'Please inform your fellow friends you can not drive them. So you can delete this group'

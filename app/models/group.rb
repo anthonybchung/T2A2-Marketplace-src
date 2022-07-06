@@ -10,7 +10,7 @@ class Group < ApplicationRecord
   #many-to-many relationships
   #A group has many customers.
   has_many :passengers
-  has_many :users, through passengers
+  has_many :users, through: :passengers
 
   #photo of a car or a meeting place
   has_one_attached :image
