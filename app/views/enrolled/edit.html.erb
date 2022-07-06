@@ -1,8 +1,10 @@
 <%= turbo_frame_tag "courses_result" do%>
-    <h4>Student Name: <%= @enrollment.course_id %></h4>
+
+<main class="col-sm-8 mx-auto mt-4">
     <% student_id = @enrollment.user_id%>
-    <% student_name = User.find(student_id).user_name %>
-    <h4>Student Email: <%=student_name%></h4>
+    <% student = User.find(student_id) %>
+    <h5>Student Name: <%= student.user_name %></h5>
+    <h5>Email: <%= student.email%></h5>
 
     <%= form_with model: @enrollment, url: update_enrolled_path do |form|%>
         <%= form.number_field :course_id, type: "hidden"%>
@@ -12,5 +14,6 @@
         <br/>
         <%= form.submit class: "btn btn-primary"%>
     <% end %>
+
+</main>
 <% end %>
-<%= console%>
