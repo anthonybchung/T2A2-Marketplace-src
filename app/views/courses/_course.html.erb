@@ -8,6 +8,7 @@
     <div class="card-body">
         <h5 class="card-title">Cohort: <%= course.year %>/<%= course.month %></h5>
     <p class="card-text">Description: <%= course.description %></p>
+    <!--style button for active and non active courses. -->
     <% if course.active%>
         <%= link_to "Analyse Course", course_path(course.id),data: {turbo_frame: "courses_result" }, class: "btn btn-primary"%>
     <% else %>

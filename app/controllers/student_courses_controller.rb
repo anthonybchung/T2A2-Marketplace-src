@@ -2,18 +2,19 @@ class StudentCoursesController < ApplicationController
     before_action :authenticate_user!
     before_action :only_students
 
+    
+    def index
+
+    end
     #display search field to search for course.
     # search by I.D given by teacher.
     # search by Name given by teacher.
     # search by Teacher's name.
-    def index
-
-    end
-
     def search
+        #return all active courses if query input is null
         if params[:query] == ""
             @courses = Course.where(active: true)
-        elsif !params[:query].match?(/\D+/)
+        elsif !"#{params[:query]}".match?(/\D+/)
             @courses = []
             @courses =  Course.where(id: params[:query].to_i, active: true)
         elsif params[:query].match?(/@/)
@@ -22,9 +23,11 @@ class StudentCoursesController < ApplicationController
         elsif params[:query].length > 0
             @courses = Course.where(name: params[:query],active: true)
         end
-
+    
+        #nothing found, redirect to student index with alert message.
         if @courses.length == 0
-            redirect_to student_courses_path, alert: "Nothing found"
+            
+            redirect_to students_index_path, alert: "Nothing found"
         end
     end
 

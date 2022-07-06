@@ -1,10 +1,12 @@
 <%= turbo_frame_tag "student_excursion" do %>
 <h5>Excursion: <%= @excursion.name%> </h5>
+<!--Display image excursion -->
 <%= image_tag(@excursion.image, style: "width: 100px")  if @excursion.image.attached?%>
 <p>Description: <%= @excursion.description%></p>
 <p>Suburb: <%= @excursion.suburb %>
 <hr>
 <h5>Driver: <%= @driver.user_name%></h5>
+<!-- Display image group-->
 <%= image_tag(@group.image, style: "width: 100px")  if @group.image.attached?%>
 <p>Pickup point: <%= @group.suburb %></p>
 <p>Total Cost: <%= number_to_currency(@group.total_cost.to_i/100)%>
@@ -19,6 +21,7 @@
         </tr>
     </thead>
     <tbody>
+    <!-- List all the passengers in the group-->
     <%@passengers.each do |passenger|%>
         <tr>
            <td><%= User.find(passenger.user_id).user_name%></td>
@@ -27,6 +30,7 @@
     <% end %>
     </tbody>
 </table>
+<!-- Destroy the passenger. Leave the group-->
 <%= link_to "Leave Group", passenger_path(@group.id), data: {turbo_method: :delete}, class:"btn btn-primary"%>
 <%= link_to "Cancel", student_excursion_path(@excursion.id), class: "btn btn-primary"%>
 <% end %>

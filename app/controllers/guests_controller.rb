@@ -1,5 +1,8 @@
 class GuestsController < ApplicationController
  
+  #for devise. 
+  #this is the root
+  # so when the logo is clicked, it will redirect to a different path depending what user is logged in.
   def index
     if current_user == nil
       #do nothing
@@ -10,6 +13,7 @@ class GuestsController < ApplicationController
     end
   end
 
+  # for future implementation to explain how to use the web app.
   def about
   end
 

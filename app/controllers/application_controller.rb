@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
 
     protected
 
+    # Added role, to the user to differentiate Teacher and Students.
+    # Added image for User profile picture.
+    
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up) do |user_params|
         user_params.permit(:role,:email,:user_name,:password,:image,:password_confirmation)

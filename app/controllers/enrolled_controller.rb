@@ -11,6 +11,8 @@ class EnrolledController < ApplicationController
     end
 
     def update 
+      # Update student/User status. 
+      #a User can be banned from a course.
       @enrollment = Enrollment.find(params[:id])
       if @enrollment.update(enrollment_params)
         redirect_to course_path(@enrollment.course_id)

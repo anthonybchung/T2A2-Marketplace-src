@@ -2,6 +2,7 @@
 <% # user_name, email, banned? %>
 
 <% enrollments.each do |enrollment| %>
+<!-- style row colour, if user is banned, highlight row red.-->
 <%if enrollment.banned%>
 <tr class="table-danger">
 <%else%>

@@ -28,6 +28,7 @@ class PassengersController < ApplicationController
     end
 
     def destroy
+        # status 303 is used to convert turbo_method destroy back to get or show.
         passenger = Passenger.where(group_id: params[:id],user_id: current_user.id).first
         excursion_id = Group.find(params[:id]).excursion.id
         if passenger.destroy

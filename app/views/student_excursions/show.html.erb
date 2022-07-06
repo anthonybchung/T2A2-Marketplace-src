@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "student_excursion" do %>
+    <!--shouw excursion and its details such as students and groups-->
     <h5>Excursion Name: <%= @excursion.name%></h5>
      <%= image_tag(@excursion.image, style: "width: 150px;") if @excursion.image.attached?%>
     <p class="border">Description: <%=@excursion.description%><p>
@@ -29,6 +30,10 @@
                     <td><%= number_to_currency(group.total_cost.to_f/100)%></td>
                     <% no_of_passengers = Group.find(group.id).passengers.length %>
                     <td><%= no_of_passengers%>/<%= group.passenger_no %></td>
+                    <!--if current user created this group then display edit, where he/she can edit car capacity and pick up area.-->
+                    <!--if not a driver and not a passenger in this excursion, then a Join button is shown.-->
+                    <!--if no of passengers is less than the group capacity the a join button is show-->
+                    <!--if the max capacity is reached, then a full button is shown. -->
                     <%if current_user.id == group.user_id %>
                         <td><%= link_to "Edit", edit_student_group_path(excursion_id: @excursion.id,id:group.id), class: "btn btn-primary" %></td>
                     <%elsif !@is_a_driver && !@is_a_passenger%>
@@ -46,7 +51,7 @@
             </tbody>
         </table>
     </div>
-
+    <!--if user is not a driver and not a passenger in the excursion, then he/she can create a group.-->
     <% if !@is_a_driver && !@is_a_passenger %>
         <%= link_to "Create Group", new_student_group_path(excursion_id: @excursion.id), data: {turbo_frame: "student_excursion"},class: "btn btn-primary"%>
     <% end %>

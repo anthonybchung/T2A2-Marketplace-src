@@ -1,6 +1,8 @@
 <main class="container">
 <%= turbo_frame_tag "courses_result" do%>
 <h1>Searched <%= pluralize(@courses.length, 'Course')%> </h1>
+ <p class="alert"><%= alert %></p>
+ <p class="notice"><%= notice %></p>
 <div class="overflow-scroll h-75">
 <ul class= "col-sm-8 mx-auto">
 <%= render partial: "student_courses/course", collection: @courses %>
