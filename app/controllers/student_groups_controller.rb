@@ -28,11 +28,13 @@ class StudentGroupsController < ApplicationController
     end
 
     def update
+       # find group
+       # make a new variable to change the total cost fom Dollar to cent.
+       # then update
         @group = Group.find(params[:id])
         updated_group = group_params
         cost  = updated_group[:total_cost].to_i * 100
         updated_group[:total_cost] = cost
-       
         if @group.update(updated_group)
             redirect_to student_excursion_path(@group.excursion_id)
         else

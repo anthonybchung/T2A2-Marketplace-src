@@ -3,7 +3,7 @@
     <%= form_with model: @group, url: update_student_group_path do |form| %>
 
     <div class="mb-2 row pe-4"%>
-        <%= image_tag(@group.image, witdth: "70px") if @group.image.attached?%>
+        <%= image_tag(@group.image, width: "70px") if @group.image.attached?%>
         <%= form.label "Vehicle" if @group.image.attached? %>  
     </div>
 

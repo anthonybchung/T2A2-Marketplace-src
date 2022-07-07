@@ -24,7 +24,7 @@
                     <td><%= group.suburb %></td>
                     <td><%= group.description%></td>
                     <td>
-                        <%= image_tag current_user.image, style: "with: 50px; height: 50px"  if current_user.image.attached?%>
+                        <%= image_tag User.find(group.user_id).image, style: "with: 50px; height: 50px"  if User.find(group.user_id).image.attached?%>
                         <%= User.find(group.user_id).user_name %>
                     </td>
                     <td><%= number_to_currency(group.total_cost.to_f/100)%></td>
