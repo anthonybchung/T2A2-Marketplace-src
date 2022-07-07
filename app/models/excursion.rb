@@ -1,5 +1,7 @@
 class Excursion < ApplicationRecord
-    
+    #An excursion must have a name.
+    validates :name, presence: true
+
     #A course is created within a Course, thus it belongs to a course.
     belongs_to :course
 

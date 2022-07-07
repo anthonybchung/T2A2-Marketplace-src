@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+    #Validation
+    validates :name, presence: true
 
     # A course is created by a User, thus it belongs to a User.
     belongs_to :user

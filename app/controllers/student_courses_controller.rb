@@ -44,6 +44,17 @@ class StudentCoursesController < ApplicationController
             end
         end    
     end
+
+    # User course.id and current_user.id to find the enrollment.id.
+    # user the enrollment.id to remove the enrollment from the table.
+    def destroy
+        @enrollment= Enrollment.where(course_id: params[:id],user_id: current_user.id).first
+        
+        if @enrollment.destroy
+            redirect_to root_path, status: 303, data: {turbo_method: :get}
+        end
+        
+    end
     
 
     private

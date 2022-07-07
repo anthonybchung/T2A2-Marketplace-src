@@ -22,8 +22,6 @@
             </svg>
         <% end %>
         </p>
-
-
         <div class="border overflow-scroll" style="height: 300px">
         <table class="table table-striped">
             <thead>
@@ -48,6 +46,8 @@
             </tbody>
         </table>
         </div>
+        
+        <%= link_to "Leave Course", student_course_path(@course.id), data: { turbo_method: :delete},class: "btn btn-primary" %>
     </section>
 
     <section class="col-sm-6 px-2 border">

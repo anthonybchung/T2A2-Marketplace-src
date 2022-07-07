@@ -1,5 +1,7 @@
 class Group < ApplicationRecord
 
+  validates :user_id, presence: true
+  validates :group_id, presence: true
   #A group is created by a student driver.
   #Thus it belongs to a user.
   belongs_to :user
