@@ -16,5 +16,4 @@ class Group < ApplicationRecord
 
   #photo of a car or a meeting place
   has_one_attached :image
-
 end

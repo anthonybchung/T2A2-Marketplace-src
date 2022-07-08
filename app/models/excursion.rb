@@ -31,4 +31,6 @@ class Excursion < ApplicationRecord
         TAS: 6,
         WA: 7
     }
+
+   
 end

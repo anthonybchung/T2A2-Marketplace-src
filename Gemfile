@@ -67,5 +67,8 @@ end
 #devise
 gem 'devise', '~> 4.8', '>= 4.8.1'
 
-
+#AWS
 gem "aws-sdk-s3", "~> 1.114"
+
+#Geocoder
+gem 'geocoder', '~> 1.3', '>= 1.3.7'
