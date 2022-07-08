@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+
+  validates :user_name, presence: true
   #A User(Teacher) creates many courses, within those courses, he/she can create many excursions.
   has_many :excursions, through: :courses
 

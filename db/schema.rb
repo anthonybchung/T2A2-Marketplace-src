@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_05_101839) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_08_084945) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_101839) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.integer "year"
     t.integer "month"
@@ -89,7 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_05_101839) do
   end
 
   create_table "excursions", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.datetime "arrive_time"
     t.string "street_number"
