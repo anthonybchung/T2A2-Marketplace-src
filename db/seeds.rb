@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-teacher = [
+teachers = [
     {
         email: "Wilgoss@unsw.com", user_name: "Prof Wilgoss", role: 2, password: '123456', password_confirmation: '123456'
     },
@@ -18,7 +18,7 @@ teacher = [
     }
 ]
 
-student = [
+students = [
     {
         email: "Alan@unsw.com",user_name: "Alan Bond", role: 1, password: '123456', password_confirmation: '123456'
     },
@@ -99,27 +99,45 @@ student = [
     }
 ]
 
-course = [
+courses = [
     {
-        name: "Mechanical Engineering", description: "TAFE practical lab 2021", year: 2021,month: 6, active: false, user_id: 33
+        name: "Mechanical Engineering 2021", description: "TAFE practical lab 2021", year: 2021,month: 6, active: false, user_id: 33
     },
     {
-        name: "Mechatronic Engineering", description: "TAFE Robotics lab 2021", year: 2021,month: 6, active: false, user_id: 33
+        name: "Mechatronic Engineering 2021", description: "TAFE Robotics lab 2021", year: 2021,month: 6, active: false, user_id: 33
     },
     {
-        name: "Naval Engineering", description: "Sail around Sydney Harbour 2021", year: 2021,month: 1, active: false, user_id:33
+        name: "Naval Engineering 2021 ", description: "Sail around Sydney Harbour 2021", year: 2021,month: 1, active: false, user_id:33
     },
     {
-        name: "Mechanical Engineering", description: "TAFE practical lab 2022", year: 2022,month: 6, active: true, user_id: 33
+        name: "Mechanical Engineering 2022", description: "TAFE practical lab 2022", year: 2022,month: 6, active: true, user_id: 33
     },
     {
-        name: "Mechatronic Engineering", description: "TAFE Robotics lab 2022", year: 2022,month: 6, active: true, user_id: 33
+        name: "Mechatronic Engineering 2022", description: "TAFE Robotics lab 2022", year: 2022,month: 6, active: true, user_id: 33
     },
     {
-        name: "Naval Engineering", description: "Sail around Sydney Harbour 2022", year: 2022,month: 1, active: true, user_id:33
+        name: "Naval Engineering 2022", description: "Sail around Sydney Harbour 2022", year: 2022,month: 1, active: true, user_id:33
     }
 ]
 
-#User.create(teacher)
-#Course.create(course)
+excusrions = [
+    {
+        name: ""
+    }
+
+]
+
+#User.create(teachers)
+#User.create(students)
+
+# Course ***
+# Find teachers ID (user_id) and insert into the data
+# then course create.
+
+courses.each do |course|
+    teacher = User.where(unser_name: "Prof Wilgoss")
+    course[:user_id] = teacher.id.to_i
+    course.create(course)
+end
+#Course.create(courses)
 
