@@ -74,4 +74,4 @@ gem "aws-sdk-s3", "~> 1.114"
 gem 'geocoder', '~> 1.3', '>= 1.3.7'
 
 # Faker
-gem 'faker', '~> 1.6', '>= 1.6.3'
+#gem 'faker', '~> 1.6', '>= 1.6.3'
