@@ -8,8 +8,8 @@ class Excursion < ApplicationRecord
     #An Excursion can accept many users.
     #Many-to-many relationship.
     #Thus an excursion can have many users through enlistments.
-    has_many :enlistments
-    has_many :users, through: :enlistments
+    # has_many :enlistments
+    # has_many :users, through: :enlistments
 
     #Users can be a driver and create their own groups for that excursion.
     #Thus an excursion has many groups.
@@ -31,6 +31,4 @@ class Excursion < ApplicationRecord
         TAS: 6,
         WA: 7
     }
-
-   
 end

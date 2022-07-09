@@ -4,8 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  #User name NOT NULL
-  
+
   validates :user_name, presence: true
   #A User(Teacher) creates many courses, within those courses, he/she can create many excursions.
   has_many :excursions, through: :courses
@@ -19,8 +18,8 @@ class User < ApplicationRecord
   #A user can join/enlist into many excursions.
   #While an excursion can accept many users
   #Thus a many-to-many relationship.
-  has_many :enlistments
-  has_many :excursions, through: :enlistments
+  # has_many :enlistments
+  # has_many :excursions, through: :enlistments
 
   # A driver(User) can create many groups
   has_many :groups
