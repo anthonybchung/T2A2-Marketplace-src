@@ -130,7 +130,7 @@ User.create(students)
 courses.each do |course|
     teacher = User.where(user_name: "Prof Wilgoss")
     course[:user_id] = teacher.id.to_i
-    course.create(course)
+    Course.create(course)
 end
 
 
