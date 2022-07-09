@@ -127,11 +127,11 @@ User.create(students)
 # Find teachers ID (user_id) and insert into the data
 # then course create.
 
-courses.each do |course|
-    teacher = User.where(user_name: "Prof Wilgoss")
-    course[:user_id] = teacher.id.to_i
-    Course.create(course)
-end
+# courses.each do |course|
+#     teacher = User.where(user_name: "Prof Wilgoss")
+#     course[:user_id] = teacher.id.to_i
+#     Course.create(course)
+# end
 
 
 
