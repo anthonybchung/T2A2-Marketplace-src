@@ -19,7 +19,7 @@ class StudentCoursesController < ApplicationController
             @courses =  Course.where(id: params[:query].to_i, active: true)
         elsif params[:query].match?(/@/)
             teacher = User.where(email: params[:query]).first
-            @courses = Course.where(user_id: teacher.id, active: true)
+            @courses = Course.where("name LIKE?", "%#{params[:query]}%", active: true)
         elsif params[:query].length > 0
             @courses = Course.where(name: params[:query],active: true)
         end

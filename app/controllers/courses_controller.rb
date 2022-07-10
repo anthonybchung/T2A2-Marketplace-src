@@ -16,7 +16,6 @@ class CoursesController < ApplicationController
         else
         # search by course name
             @courses = Course.where("name LIKE?", "%#{params[:query]}%")
-            # @courses = Course.where(name: params[:query],user_id: current_user).order(active: :desc)
         end
        
         # if the search returns nothing, it will list all the courses that was created by the current user.
