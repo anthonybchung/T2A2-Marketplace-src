@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
             @courses =  Course.where(id: params[:query].to_i, user_id: current_user).order(active: :desc)
         else
         # search by course name
-            @courses = Course.where("name LIKE?", "%" + params[:query]+"%")
+            @courses = Course.where("name LIKE?", "%#{params[:query]}%")
             # @courses = Course.where(name: params[:query],user_id: current_user).order(active: :desc)
         end
        
